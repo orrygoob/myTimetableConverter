@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head>
+  <script type="text/javascript" src="FileSaver.js"></script>
+  <script type="text/javascript" src="ics.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+  <div class="wrap"></div>
+    <input type="file" id="fileUploadButton" onchange="onFileSelected(event)"/>
+    <br>
+    <a href="#" onclick="javascript:cal.download('myTimetable')">Download ICS</a>
+  </div>
+</html>
