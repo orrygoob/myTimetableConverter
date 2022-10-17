@@ -1,4 +1,6 @@
 let emoji = true;
+let alerts = false;
+let alertTime = 0;
 
 function onFileSelected(event) {
   console.log("file selected");
