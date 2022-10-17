@@ -16,10 +16,10 @@ function onFileSelected(event) {
 
 function parseContent(input) {
   // Find blob in html file
-  var result = input.match(/\[\{[\s\S]*\]/);
+  var result = input.match(/JSON\.parse\(\"(\[\{[\s\S]*\}\])\"\)/);
 
-  if (result.length > 0) {
-    var cleanText = JSON.parse('"' + result[0] + '"');
+  if (result.length > 1) {
+    var cleanText = JSON.parse('"' + result[1] + '"');
     var json = JSON.parse(cleanText);
     createCalendar(json);
   }
