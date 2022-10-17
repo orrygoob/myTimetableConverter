@@ -21,7 +21,11 @@ function parseContent(input) {
   if (result.length > 1) {
     var cleanText = JSON.parse('"' + result[1] + '"');
     var json = JSON.parse(cleanText);
-    createCalendar(json);
+    try {
+      createCalendar(json);
+    } catch (e) {
+      alert(e); //TODO: better error handling
+    }
   }
 }
 
@@ -80,8 +84,16 @@ function createCalendar(input) {
         eventDescription += "\\nEmail: " + e.staff[0].email;
       }
 
-      cal.addEvent(eventSubject, eventDescription, eventLocation, e.start_datetime, e.end_datetime);
+      cal.addEvent(eventSubject, eventDescription, eventLocation, e.start_datetime.replace(' ', 'T'), e.end_datetime.replace(' ', 'T'));
   });
+}
+
+function downloadCalendar() {
+  try {
+    cal.download('myTimetable');
+  } catch (e) {
+    alert(e); //TODO: better error handling
+  }
 }
 
 
