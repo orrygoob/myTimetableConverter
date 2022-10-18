@@ -32,7 +32,7 @@ function generateSubject(type, module) {
       output += emojis[type];
     else {
       console.log(type + " is an unknown type of class. Contact the maintainer to allocate an emoji.");
-      output += "❓";
+      output += "\u2753";
     }
 
     output += ' ';
