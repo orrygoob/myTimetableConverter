@@ -10,13 +10,25 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <header class="container">
+      <h1>MyTimetrash</h1>
+    </header>
+
     <main class="container mt-2">
       <input type="file" id="fileUploadButton" onchange="onFileSelected(event)"/>
       <br>
       <a href="#" onclick="downloadCalendar()">Download ICS</a>
+
+      <h2>Instructions</h2>
+      <nav class="platform-picker">
+        <div class="platform-picker-content">
+          <a href="#pc" data-platform="pc">Mac / PC</a>
+          <a href="#ios" data-platform="ios">iOS</a>
+        </div>
+      </nav>
     </main>
     
-    <footer>
+    <footer class="container">
       
     </footer>
 

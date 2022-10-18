@@ -106,3 +106,19 @@ makelogs = function(obj) {
   console.log('=================');
   console.log(obj.calendar());
 }
+
+function hashChanged() {
+  let platform;
+  if (window.location.hash?.length < 2) {
+    platform = "ios"; //TODO: get client platform
+  } else {
+    platform = window.location.hash.substring(1);
+  }
+  document.querySelectorAll('.selected[data-platform]').forEach((e) => {
+    e.classList.remove('selected');
+  });
+  document.querySelector(`[data-platform="${platform}"]`).classList.add('selected');
+}
+
+addEventListener('hashchange', hashChanged);
+hashChanged();

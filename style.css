@@ -9,5 +9,39 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+.platform-picker {
+  display: flex;
+  border-bottom: 1px solid rgb(33, 38, 45);
+  margin-bottom: 24px;
+}
+
+.platform-picker-content {
+  margin-bottom: -1px;
+  display: flex;
+}
+
+.platform-picker a {
+  padding: 16px 8px;
+  margin-right: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(201, 209, 217);
+  text-align: center;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+}
+
+.platform-picker a:hover {
+  color: rgb(201, 209, 217);
+  text-decoration: none;
+  border-bottom-color: rgba(110, 118, 129, 0.4);
+  transition: border-bottom-color 0.2s ease 0s;
+}
+
+.platform-picker a.selected {
+  color: rgb(201, 209, 217);
+  border-bottom-color: rgb(247, 129, 102);
+}
+
 main {
 }
