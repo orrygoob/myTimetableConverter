@@ -2,8 +2,7 @@ let emoji = true;
 let alerts = false;
 let alertTime = 0;
 
-function onFileSelected(event) {
-  var selectedFile = event.target.files[0];
+function handleCalendarFile(selectedFile) {
   document.querySelector('#fileUploadLabel').innerText = `📄 ${selectedFile.name}`;
 
   var reader = new FileReader();
@@ -14,6 +13,21 @@ function onFileSelected(event) {
 
   reader.readAsText(selectedFile);
 }
+
+function onFileSelected(event) {
+  handleCalendarFile(event.target.files[0]);
+}
+
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
+  window.addEventListener(eventName, (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+});
+
+window.addEventListener('drop', (e) => {
+  handleCalendarFile(e.dataTransfer.files[0]);
+});
 
 function parseContent(input) {
   // Find blob in html file
