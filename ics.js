@@ -111,6 +111,13 @@ var ics = function(uidDomain, prodId) {
       var end_date = new Date(stop);
       var now_date = new Date();
 
+      if (!isFinite(start_date)) {
+        throw new Error(`Invalid start date: ${begin}`);
+      }
+      if (!isFinite(end_date)) {
+        throw new Error(`Invalid end date: ${stop}`);
+      }
+
       var start_year = ("0000" + (start_date.getFullYear().toString())).slice(-4);
       var start_month = ("00" + ((start_date.getMonth() + 1).toString())).slice(-2);
       var start_day = ("00" + ((start_date.getDate()).toString())).slice(-2);
@@ -214,7 +221,7 @@ var ics = function(uidDomain, prodId) {
 
       var blob;
       if (navigator.userAgent.indexOf('MSIE 10') === -1) { // chrome or firefox
-        blob = new Blob([calendar]);
+        blob = new Blob([calendar], { type: 'text/calendar' });
       } else { // ie
         var bb = new BlobBuilder();
         bb.append(calendar);

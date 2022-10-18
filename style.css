@@ -1,45 +1,132 @@
-html,
+/* Global variables: */
+html {
+  --col-text: #c9d1d9;
+  --col-bg: #0d1117;
+  --col-primary: #f78166;
+  --col-primary-btn: #c0543c;
+  --col-border: rgb(33, 38, 45);
+  --col-hover: rgba(110, 118, 129, 0.4);
+  --col-link: #58a6ff;
+  --col-dark-text: #8b949e;
+}
+
+/* Bootstrap buttons: */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: var(--bs-btn-color);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-bg: var(--col-primary-btn);
+  --bs-btn-border-color: var(--col-primary-btn);
+  --bs-btn-hover-bg: var(--bs-btn-bg);
+  --bs-btn-hover-border-color: var(--bs-btn-border-color);
+  --bs-btn-active-bg: var(--bs-btn-bg);
+  --bs-btn-active-border-color: var(--bs-btn-border-color);
+}
+
+.btn-primary:hover, a:hover, #fileUploadLabel:hover {
+  filter: brightness(0.85);
+}
+
+.btn-primary:active, a:active, #fileUploadLabel:active {
+  filter: brightness(0.75);
+}
+
+/* Site defaults: */
 body {
-  height: 100%;
+  background: var(--col-bg);
+  color: var(--col-text);
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+a, a:visited {
+  color: var(--col-link);
+}
+
+/* Header: */
+#pageTitle {
+  text-align: center;
+}
+
+/* Download controls: */
+.download-controls {
+  margin: auto;
+  text-align: center;
+  max-width: 300px;
+}
+
+#fileUploadLabel {
+  border:var(--col-text) 2px solid;
+  border-radius: 12px;
+  width: 100%;
+  height: 200px;
+  line-height: 200px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#downloadBtn {
   width: 100%;
 }
 
-.wrap {
+.options-container {
   margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 50px;
-  width: 100px;
+  display: inline-block;
+  text-align: left;
 }
 
-a {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
+/* Instructions: */
+.platform-picker {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--col-border);
+}
+
+.platform-picker-content {
+  margin-bottom: -1px;
+  display: flex;
+}
+
+.platform-picker a {
+  padding: 16px 8px;
+  margin-right: 16px;
   font-size: 14px;
-  font-weight: normal;
-  line-height: 1.428571429;
+  line-height: 1.5;
+  color: var(--col-text);
   text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  cursor: pointer;
-  color: #ffffff;
+  border-bottom: 2px solid transparent;
   text-decoration: none;
-  font-weight: bold;
-  background-color: #428bca;
-  border-color: #357ebd;
-  font-family: sans-serif;
-  width: 120px;
+}
+
+.platform-picker a:hover {
+  color: var(--col-text);
+  text-decoration: none;
+  border-bottom-color: var(--col-hover);
+  transition: border-bottom-color 0.2s ease 0s;
+}
+
+.platform-picker a.selected {
+  color: var(--col-text);
+  border-bottom-color: var(--col-primary);
+}
+
+.instructions-content > * {
+  display: none;
+}
+
+.instructions-content > .selected {
+  display: block!important;
+}
+
+/* Footer: */
+footer {
+  border-top: 1px solid var(--col-border);
+  text-align: center;
+  color: var(--col-dark-text);
+  font-size: 12px;
 }
