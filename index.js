@@ -1,20 +1,26 @@
 let alerts = false; //TODO: implement alerts and use document.querySelector('#optionsForm').alerts.checked
 let alertTime = 0;
+var calendarFile = null;
+
+function selectCalendarFile(selectedFile) {
+  calendarFile = selectedFile;
+  document.querySelector('#fileUploadLabel').innerText = `📄 ${selectedFile.name}`;
+}
 
 function handleCalendarFile(selectedFile) {
-  document.querySelector('#fileUploadLabel').innerText = `📄 ${selectedFile.name}`;
+  return new Promise((resolve) => {
+    var reader = new FileReader();
 
-  var reader = new FileReader();
+    reader.onloadend = function(event) {
+      resolve(parseContent(event.target.result));
+    };
 
-  reader.onloadend = function(event) {
-    parseContent(event.target.result);
-  };
-
-  reader.readAsText(selectedFile);
+    reader.readAsText(selectedFile);
+  });
 }
 
 function onFileSelected(event) {
-  handleCalendarFile(event.target.files[0]);
+  selectCalendarFile(event.target.files[0]);
 }
 
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
@@ -25,7 +31,7 @@ function onFileSelected(event) {
 });
 
 window.addEventListener('drop', (e) => {
-  handleCalendarFile(e.dataTransfer.files[0]);
+  selectCalendarFile(e.dataTransfer.files[0]);
 });
 
 function parseContent(input) {
@@ -36,11 +42,12 @@ function parseContent(input) {
     var cleanText = JSON.parse('"' + result[1] + '"');
     var json = JSON.parse(cleanText);
     try {
-      createCalendar(json);
+      return createCalendar(json);
     } catch (e) {
       alert(e); //TODO: better error handling
     }
   }
+  return null;
 }
 
 function generateSubject(type, module) {
@@ -73,7 +80,7 @@ function generateSubject(type, module) {
 }
 
 function createCalendar(input) {
-  cal = ics();
+  let cal = ics();
   
   input.forEach(e => {
       if (e["location"] != null) {
@@ -99,13 +106,24 @@ function createCalendar(input) {
 
       cal.addEvent(eventSubject, eventDescription, eventLocation, e.start_datetime.replace(' ', 'T'), e.end_datetime.replace(' ', 'T'));
   });
+
+  return cal;
 }
 
 function downloadCalendar() {
-  try {
-    cal.download('myTimetable');
-  } catch (e) {
-    alert(e); //TODO: better error handling
+  if (!calendarFile) {
+    alert('Error: no file chosen.');
+  } else {
+    handleCalendarFile(calendarFile).then((cal) => {
+      try {
+        if (!cal) {
+          throw new Error('Failed to get calendar info from HTML.');
+        }
+        cal.download('myTimetable');
+      } catch (e) {
+        alert(e); //TODO: better error handling
+      }
+    });
   }
 }
 
