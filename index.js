@@ -3,8 +3,9 @@ let alerts = false;
 let alertTime = 0;
 
 function onFileSelected(event) {
-  console.log("file selected");
   var selectedFile = event.target.files[0];
+  document.querySelector('#fileUploadLabel').innerText = `📄 ${selectedFile.name}`;
+
   var reader = new FileReader();
 
   reader.onloadend = function(event) {
@@ -76,7 +77,6 @@ function createCalendar(input) {
       }
 
       eventSubject = generateSubject(e.type, e.description);
-      console.log(e);
 
       eventDescription = e.module.name;
       if (e.staff && e.staff.length > 0 && e.staff[0].name) {
@@ -108,17 +108,24 @@ makelogs = function(obj) {
 }
 
 function hashChanged() {
-  let platform;
+  const isMobileDevice = () => {
+    return !!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
+
+  let platform = "ios";
   if (window.location.hash?.length < 2) {
-    platform = "ios"; //TODO: get client platform
+    platform = isMobileDevice() ? 'ios' : 'pc';
   } else {
     platform = window.location.hash.substring(1);
   }
-  document.querySelectorAll('.selected[data-platform]').forEach((e) => {
-    e.classList.remove('selected');
-  });
-  document.querySelector(`[data-platform="${platform}"]`).classList.add('selected');
+  document.querySelector('.selected[data-platform-opt]')?.classList?.remove('selected');
+  document.querySelector(`[data-platform-opt="${platform}"]`).classList.add('selected');
+
+  document.querySelector('.selected[data-instructions-platform]')?.classList?.remove('selected');
+  document.querySelector(`[data-instructions-platform="${platform}"]`).classList.add('selected');
 }
 
 addEventListener('hashchange', hashChanged);
-hashChanged();
+addEventListener('DOMContentLoaded', () => {
+  hashChanged();
+});

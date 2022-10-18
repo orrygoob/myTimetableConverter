@@ -10,26 +10,43 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header class="container">
-      <h1>MyTimetrash</h1>
+    <header class="container mb-4 mt-4">
+      <h1 id="pageTitle">MyTimetrash</h1>
     </header>
 
-    <main class="container mt-2">
-      <input type="file" id="fileUploadButton" onchange="onFileSelected(event)"/>
-      <br>
-      <a href="#" onclick="downloadCalendar()">Download ICS</a>
+    <main class="container">
+      <section class="download-controls mb-4">
+        <form>
+          <input type="file" id="fileUploadButton" onchange="onFileSelected(event)" hidden/>
+          <label for="fileUploadButton" id="fileUploadLabel" class="mb-2">Choose File</label>
+          <br>
+          <button type="button" class="btn btn-primary" id="downloadBtn" onclick="downloadCalendar()">Download Calendar</button>
+        </form>
+      </section>
 
-      <h2>Instructions</h2>
-      <nav class="platform-picker">
-        <div class="platform-picker-content">
-          <a href="#pc" data-platform="pc">Mac / PC</a>
-          <a href="#ios" data-platform="ios">iOS</a>
+      <section class="instructions">
+        <h2 class="mb-0">Instructions</h2>
+        <nav class="platform-picker mb-4">
+          <div class="platform-picker-content">
+            <a href="#pc" data-platform-opt="pc">Mac / PC</a>
+            <a href="#ios" data-platform-opt="ios">iOS</a>
+          </div>
+        </nav>
+
+        <div class="instructions-content">
+          <div data-instructions-platform="pc">
+            PC instructions
+          </div>
+
+          <div data-instructions-platform="ios">
+            iOS instructions
+          </div>
         </div>
-      </nav>
+      </section>
     </main>
     
-    <footer class="container">
-      
+    <footer class="container mt-4">
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
