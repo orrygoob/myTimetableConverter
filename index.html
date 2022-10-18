@@ -18,7 +18,7 @@
       <section class="download-controls mb-4">
         <form id="optionsForm">
           <input type="file" id="fileUploadButton" onchange="onFileSelected(event)" hidden/>
-          <label for="fileUploadButton" id="fileUploadLabel" class="mb-2">Choose File</label><br>
+          <label for="fileUploadButton" id="fileUploadLabel" class="mb-2">&#128193; Choose File</label><br>
           <button type="button" class="btn btn-primary mb-2" id="downloadBtn" onclick="downloadCalendar()">Download Calendar</button>
           <div class="options-container">
             <input type="checkbox" id="emojis" name="emojis" checked/>
@@ -34,24 +34,39 @@
         <nav class="platform-picker mb-4">
           <div class="platform-picker-content">
             <a href="#pc" data-platform-opt="pc">Mac / PC</a>
-            <a href="#ios" data-platform-opt="ios">iOS</a>
+            <a href="#ios" data-platform-opt="ios">iOS (Safari only)</a>
           </div>
         </nav>
 
         <div class="instructions-content">
           <div data-instructions-platform="pc">
-            PC instructions
+            <ol>
+              <li>Login to <a href="https://mytimetable.durham.ac.uk/calendar" target="_blank">MyTimetable</a> and make sure you are on the <strong>monthly</strong> tab.</li>
+              <li>Press Cmd+S / Ctrl+S to download the page (make sure you download the raw HTML). Save this file as anything you like.</li>
+              <li>Choose your options above, and then click "Choose File" and select the HTML file you just downloaded.</li>
+              <li>Click "Download Calendar" to download the .ics representation of your timetable.</li>
+              <li>Import your timetable into your calendar app of choice. It is recommended to create a new calendar to add the events to, so that they can be easily removed later.</li>
+            </ol>
           </div>
 
           <div data-instructions-platform="ios">
-            iOS instructions
+            <ol>
+              <li>Bookmark this page with the name "Download page source".</li>
+              <li>Tap <a href="#ios" onclick="copyBookmarklet()">here</a> to copy some JavaScript to your clipboard.</li>
+              <li>Open your bookmarks list and edit the bookmark you just created.</li>
+              <li>Paste the text you copied in step 2 into the Address of the bookmark.</li>
+              <li>Login to <a href="https://mytimetable.durham.ac.uk/calendar" target="_blank">MyTimetable</a> and make sure you are on the <strong>monthly</strong> tab.</li>
+              <li>Open the bookmark you made and download the file.</li>
+              <li>Choose your options above, and then tap "Choose File" and select the HTML file you just downloaded.</li>
+              <li>Click "Download Calendar" and add the events to the calendar app. It is recommended to create a new calendar to add the events to, so that they can be easily removed later.</li>
+            </ol>
           </div>
         </div>
       </section>
     </main>
     
-    <footer class="container mt-4">
-
+    <footer class="container mt-4 pt-2 pb-2">
+      <p>Disclaimer: MyTimetrash is neither endorsed by nor affiliated with Durham University.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>

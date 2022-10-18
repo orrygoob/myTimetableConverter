@@ -138,6 +138,60 @@ function hashChanged() {
   document.querySelector(`[data-instructions-platform="${platform}"]`).classList.add('selected');
 }
 
+/**
+ * Copy a string to clipboard
+ * @param  {String} string         The string to be copied to clipboard
+ * @return {Boolean}               returns a boolean correspondent to the success of the copy operation.
+ * @see https://stackoverflow.com/a/53951634/938822
+ */
+ function copyToClipboard(string) {
+  let textarea;
+  let result;
+
+  try {
+    textarea = document.createElement('textarea');
+    textarea.setAttribute('readonly', true);
+    textarea.setAttribute('contenteditable', true);
+    textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+    textarea.value = string;
+
+    document.body.appendChild(textarea);
+
+    textarea.focus();
+    textarea.select();
+
+    const range = document.createRange();
+    range.selectNodeContents(textarea);
+
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    textarea.setSelectionRange(0, textarea.value.length);
+    result = document.execCommand('copy');
+  } catch (err) {
+    console.error(err);
+    result = null;
+  } finally {
+    document.body.removeChild(textarea);
+  }
+
+  // manual copy fallback using prompt
+  if (!result) {
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    const copyHotkey = isMac ? '⌘C' : 'CTRL+C';
+    result = prompt(`Press ${copyHotkey}`, string);
+    if (!result) {
+      return false;
+    }
+  }
+  return true;
+}
+function copyBookmarklet() {
+  copyToClipboard(`javascript:!function(){let e=document.documentElement.innerHTML;var t=document.createElement("a");t.setAttribute("href","data:text/plain;charset=utf-8,"+encodeURIComponent(e)),t.setAttribute("download",\`\${document.title}.html\`),t.style.display="none",document.body.appendChild(t),t.click(),document.body.removeChild(t)}();`);
+  alert('Copied to clipboard.');
+}
+
 addEventListener('hashchange', hashChanged);
 addEventListener('DOMContentLoaded', () => {
   hashChanged();

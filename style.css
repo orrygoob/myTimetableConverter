@@ -6,6 +6,8 @@ html {
   --col-primary-btn: #c0543c;
   --col-border: rgb(33, 38, 45);
   --col-hover: rgba(110, 118, 129, 0.4);
+  --col-link: #58a6ff;
+  --col-dark-text: #8b949e;
 }
 
 /* Bootstrap buttons: */
@@ -21,11 +23,11 @@ html {
   --bs-btn-active-border-color: var(--bs-btn-border-color);
 }
 
-.btn-primary:hover {
+.btn-primary:hover, a:hover, #fileUploadLabel:hover {
   filter: brightness(0.85);
 }
 
-.btn-primary:active {
+.btn-primary:active, a:active, #fileUploadLabel:active {
   filter: brightness(0.75);
 }
 
@@ -39,6 +41,10 @@ body {
   word-wrap: break-word;
   color-scheme: dark;
   -webkit-text-size-adjust: 100%;
+}
+
+a, a:visited {
+  color: var(--col-link);
 }
 
 /* Header: */
@@ -61,14 +67,6 @@ body {
   line-height: 200px;
   overflow: hidden;
   cursor: pointer;
-}
-
-#fileUploadLabel:hover {
-  filter: brightness(0.85);
-}
-
-#fileUploadLabel:active {
-  filter: brightness(0.75);
 }
 
 #downloadBtn {
@@ -123,4 +121,12 @@ body {
 
 .instructions-content > .selected {
   display: block!important;
+}
+
+/* Footer: */
+footer {
+  border-top: 1px solid var(--col-border);
+  text-align: center;
+  color: var(--col-dark-text);
+  font-size: 12px;
 }
