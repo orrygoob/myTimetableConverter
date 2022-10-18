@@ -63,8 +63,22 @@ body {
   cursor: pointer;
 }
 
+#fileUploadLabel:hover {
+  filter: brightness(0.85);
+}
+
+#fileUploadLabel:active {
+  filter: brightness(0.75);
+}
+
 #downloadBtn {
   width: 100%;
+}
+
+.options-container {
+  margin: auto;
+  display: inline-block;
+  text-align: left;
 }
 
 /* Instructions: */

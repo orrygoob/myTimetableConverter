@@ -1,5 +1,4 @@
-let emoji = true;
-let alerts = false;
+let alerts = false; //TODO: implement alerts and use document.querySelector('#optionsForm').alerts.checked
 let alertTime = 0;
 
 function handleCalendarFile(selectedFile) {
@@ -47,7 +46,7 @@ function parseContent(input) {
 function generateSubject(type, module) {
   output = "";
 
-  if (emoji) {
+  if (document.querySelector('#optionsForm').emojis.checked) {
     emojis = {"Practical":"\u{1F468}\u{200D}\u{1F4BB}", "Tutorial": "\u{1F468}\u{200D}\u{1F4BB}", "Lecture": "\u{1F393}", "Drop-In Class": "\u2B07\uFE0F", "Online Lecture":"\u{1F310}", "Online Computer Class": "\u{1F310}", "Seminar":"\u23F3"};
     if (type in emojis)
       output += emojis[type];

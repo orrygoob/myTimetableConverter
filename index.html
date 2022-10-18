@@ -16,11 +16,16 @@
 
     <main class="container">
       <section class="download-controls mb-4">
-        <form>
+        <form id="optionsForm">
           <input type="file" id="fileUploadButton" onchange="onFileSelected(event)" hidden/>
-          <label for="fileUploadButton" id="fileUploadLabel" class="mb-2">Choose File</label>
-          <br>
-          <button type="button" class="btn btn-primary" id="downloadBtn" onclick="downloadCalendar()">Download Calendar</button>
+          <label for="fileUploadButton" id="fileUploadLabel" class="mb-2">Choose File</label><br>
+          <button type="button" class="btn btn-primary mb-2" id="downloadBtn" onclick="downloadCalendar()">Download Calendar</button>
+          <div class="options-container">
+            <input type="checkbox" id="emojis" name="emojis" checked/>
+            <label for="emojis">Include emojis</label><br>
+            <input type="checkbox" id="alerts" name="alerts" />
+            <label for="alerts">Add alerts</label>
+          </div>
         </form>
       </section>
 
