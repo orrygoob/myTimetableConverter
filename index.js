@@ -139,13 +139,17 @@ makelogs = function(obj) {
 }
 
 function hashChanged() {
-  const isMobileDevice = () => {
-    return !!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const navigatorPlatform = () => {
+    if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+      return 'android';
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent))
+      return 'ios';
+    return 'pc';
   };
-
-  let platform = "ios";
+  
+  let platform;
   if (window.location.hash?.length < 2) {
-    platform = isMobileDevice() ? 'ios' : 'pc';
+    platform = navigatorPlatform();
   } else {
     platform = window.location.hash.substring(1);
   }
