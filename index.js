@@ -38,16 +38,17 @@ function parseContent(input) {
   // Find blob in html file
   var result = input.match(/JSON\.parse\(\"(\[\{[\s\S]*\}\])\"\)/);
 
-  if (result.length > 1) {
+  try {
+    if (!result || result.length < 2)
+      throw new Error("No json blob found.");
+
     var cleanText = JSON.parse('"' + result[1] + '"');
     var json = JSON.parse(cleanText);
-    try {
-      return createCalendar(json);
-    } catch (e) {
-      alert(e); //TODO: better error handling
-    }
+
+    return createCalendar(json);
+  } catch (e) {
+    return null;
   }
-  return null;
 }
 
 function generateSubject(type, module) {
