@@ -2,6 +2,10 @@ let alerts = false; //TODO: implement alerts and use document.querySelector('#op
 let alertTime = 0;
 var calendarFile = null;
 
+// Enable all tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 function selectCalendarFile(selectedFile) {
   calendarFile = selectedFile;
   document.querySelector('#fileUploadLabel').innerText = `📄 ${selectedFile.name}`;
