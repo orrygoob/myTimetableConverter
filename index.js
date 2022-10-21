@@ -87,7 +87,9 @@ function createCalendar(input) {
       if (e["location"] != null) {
         latitude = e["location"]["building"]["latitude"];
         longitude = e["location"]["building"]["longitude"];
-        eventLocation = e["location"]["name"] + ", " + e["location"]["building"]["name"];
+        roomNumber = e["location"]["name"].replace("D/","");
+        buildingName = e["location"]["building"]["name"].replace("B/","");
+        eventLocation = roomNumber + " - " + buildingName;
       }
       else {
         eventLocation = "Unknown location";
