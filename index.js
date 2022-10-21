@@ -107,6 +107,15 @@ function createCalendar(input) {
         eventDescription += "\\nEmail: " + e.staff[0].email;
       }
 
+      if (e?.location_link) {
+        try {
+          eventDescription += "\\n\\nMaps Link: " + e.location_link.match(/href="([\S]*)"/)[1];
+        }
+        catch {
+          console.error("Getting google maps url failed");
+        }
+      }
+
       cal.addEvent(eventSubject, eventDescription, eventLocation, e.start_datetime.replace(' ', 'T'), e.end_datetime.replace(' ', 'T'));
   });
 
