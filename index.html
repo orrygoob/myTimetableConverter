@@ -37,9 +37,9 @@
         <h2 class="mb-0">Instructions</h2>
         <nav class="platform-picker mb-4">
           <div class="platform-picker-content">
-            <a href="#pc" data-platform-opt="pc">Mac / PC (Recommended)</a>
+            <a href="#pc" data-platform-opt="pc">Mac / PC</a>
             <a href="#ios" data-platform-opt="ios">iOS (Safari only)</a>
-            <a href="#android" data-platform-opt="android">Android (Not Supported)</a>
+            <a href="#android" data-platform-opt="android">Android</a>
           </div>
         </nav>
 
@@ -50,7 +50,11 @@
               <li>Press Cmd+S / Ctrl+S to download the page (make sure you download the raw HTML). Save this file as anything you like.</li>
               <li>Choose your options above, and then click "Choose File" and select the HTML file you just downloaded.</li>
               <li>Click "Download Calendar" to download the .ics representation of your timetable.</li>
-              <li>Import your timetable into your calendar app of choice. It is recommended to create a new calendar to add the events to, so that they can be easily removed later. (Tested on both iCalendar and Google Calendar).</li>
+              <li>Import your timetable into your calendar app of choice. It is recommended to create a new calendar to add the events to, so that they can be easily removed later.</li>
+              <ul>
+                <li>For Apple Calendar: Double click the downloaded .ics file, in the popup select the calendar you want to add your timetable to.</li>
+                <li>For Google Calendar: Go to <a href="https://calendar.google.com/calendar">Google Calendar</a>, Click the settings icon in the top right then click settings, In the left hand bar click 'import & export', Click 'select file from computer' and find the downloaded .ics file, Select the calendar to add to and click 'Import'.</li>
+              </ul>
             </ol>
           </div>
 
@@ -65,13 +69,17 @@
               <li>Choose your options above, and then tap "Choose File" and select the HTML file you just downloaded.</li>
               <li>Click "Download Calendar" and add the events to the calendar app. It is recommended to create a new calendar to add the events to, so that they can be easily removed later.</li>
             </ol>
+            <ul>
+              <li>Alternatively if you use Apple Calendar and have a Mac signed into the same account as your phone you can follow the Mac / PC instructions for Apple Calendar and it will sync automatically across to your phone.</li>
+            </ul>
           </div>
 
           <div data-instructions-platform="android">
-            <ol>
+            <ul>
               <li>Not officially supported.</li>
               <li>The iOS instructions will work on android in a pinch if you open the bookmark from the URL bar in chrome, however it is not recommended due to limited import support on calendar apps.</li>
-            </ol>
+              <li>The best method for android is to follow the Mac / PC instructions and then upload the calendar file to an app that will sync with your phone (i.e. Google Calendar)</li>
+            </ul>
           </div>
         </div>
       </section>
